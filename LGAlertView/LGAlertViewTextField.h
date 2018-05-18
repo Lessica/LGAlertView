@@ -31,4 +31,7 @@
 
 @interface LGAlertViewTextField : UITextField
 
+- (void)setColorButtonClearHighlighted:(UIColor *)colorButtonClearHighlighted;
+- (void)setColorButtonClearNormal:(UIColor *)colorButtonClearNormal;
+
 @end

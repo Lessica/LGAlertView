@@ -393,6 +393,10 @@ _Pragma("clang diagnostic pop")
 @property (strong, nonatomic, nullable) UIColor *textFieldsBackgroundColor UI_APPEARANCE_SELECTOR;
 /** Default is UIColor.blackColor */
 @property (strong, nonatomic, nullable) UIColor *textFieldsTextColor UI_APPEARANCE_SELECTOR;
+/** Default is nil */
+@property (strong, nonatomic, nullable) UIColor *textFieldsButtonClearColorHighlighted UI_APPEARANCE_SELECTOR;
+/** Default is nil */
+@property (strong, nonatomic, nullable) UIColor *textFieldsButtonClearColor UI_APPEARANCE_SELECTOR;
 /** Default is [UIFont systemFontOfSize:16.0] */
 @property (strong, nonatomic, nullable) UIFont *textFieldsFont UI_APPEARANCE_SELECTOR;
 /** Default is NSTextAlignmentLeft */

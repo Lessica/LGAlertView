@@ -1052,6 +1052,8 @@ LGAlertViewType;
 
     _textFieldsBackgroundColor = appearance.textFieldsBackgroundColor;
     _textFieldsTextColor = appearance.textFieldsTextColor;
+    _textFieldsButtonClearColorHighlighted = appearance.textFieldsButtonClearColorHighlighted;
+    _textFieldsButtonClearColor = appearance.textFieldsButtonClearColor;
     _textFieldsFont = appearance.textFieldsFont;
     _textFieldsTextAlignment = appearance.textFieldsTextAlignment;
     _textFieldsClearsOnBeginEditing = appearance.textFieldsClearsOnBeginEditing;
@@ -2301,6 +2303,12 @@ _Pragma("clang diagnostic pop")
                 textField.adjustsFontSizeToFitWidth = self.textFieldsAdjustsFontSizeToFitWidth;
                 textField.minimumFontSize = self.textFieldsMinimumFontSize;
                 textField.clearButtonMode = self.textFieldsClearButtonMode;
+                if (self.textFieldsButtonClearColor) {
+                    [textField setColorButtonClearNormal:self.textFieldsButtonClearColor];
+                }
+                if (self.textFieldsButtonClearColorHighlighted) {
+                    [textField setColorButtonClearHighlighted:self.textFieldsButtonClearColorHighlighted];
+                }
 
                 if (i == self.numberOfTextFields - 1) {
                     textField.returnKeyType = UIReturnKeyDone;
