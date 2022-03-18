@@ -42,7 +42,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        self.backgroundColor = [UIColor clearColor];
+        
         [self clearBackgrounds];
 
         self.separatorView = [UIView new];
@@ -162,9 +163,9 @@
     [super setHighlighted:highlighted animated:animated];
 
     if (highlighted) {
-        self.textLabel.textColor = self.titleColorHighlighted;
-        self.imageView.image = self.imageHighlighted;
-        self.backgroundColor = self.backgroundColorHighlighted;
+        self.textLabel.textColor = self.titleColorHighlighted ?: self.titleColor;
+        self.imageView.image = self.imageHighlighted ?: self.image;
+        self.backgroundColor = self.backgroundColorHighlighted ?: self.backgroundColor;
     }
     else {
         [self setEnabled:self.enabled];
@@ -177,9 +178,9 @@
     [super setSelected:selected animated:animated];
 
     if (selected) {
-        self.textLabel.textColor = self.titleColorHighlighted;
-        self.imageView.image = self.imageHighlighted;
-        self.backgroundColor = self.backgroundColorHighlighted;
+        self.textLabel.textColor = self.titleColorHighlighted ?: self.titleColor;
+        self.imageView.image = self.imageHighlighted ?: self.image;
+        self.backgroundColor = self.backgroundColorHighlighted ?: self.backgroundColor;
     }
     else {
         [self setEnabled:self.enabled];
