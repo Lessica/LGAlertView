@@ -2931,6 +2931,7 @@ _Pragma("clang diagnostic pop")
                 [self.tableView registerClass:[LGAlertViewCell class] forCellReuseIdentifier:@"cell"];
                 self.tableView.frame = CGRectMake(0.0, 0.0, width, CGFLOAT_MAX);
                 [self.tableView reloadData];
+                [self.tableView layoutIfNeeded];
 
                 if (!offsetY) {
                     offsetY = -self.innerMarginHeight;
