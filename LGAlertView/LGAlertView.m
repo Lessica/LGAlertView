@@ -1125,23 +1125,31 @@ _Pragma("clang diagnostic pop")
 
 #pragma mark - UIAppearance
 
-+ (instancetype)appearance {
++ (nonnull instancetype)appearance {
     return [self sharedAlertViewForAppearance];
 }
 
-+ (instancetype)appearanceWhenContainedIn:(Class<UIAppearanceContainer>)ContainerClass, ... {
++ (nonnull instancetype)appearanceWhenContainedIn:(Class<UIAppearanceContainer>)ContainerClass, ... {
     return [self sharedAlertViewForAppearance];
 }
 
-+ (instancetype)appearanceForTraitCollection:(UITraitCollection *)trait {
++ (nonnull instancetype)appearanceForTraitCollection:(nonnull UITraitCollection *)trait {
     return [self sharedAlertViewForAppearance];
 }
 
-+ (instancetype)appearanceForTraitCollection:(UITraitCollection *)trait whenContainedIn:(Class<UIAppearanceContainer>)ContainerClass, ... {
++ (nonnull instancetype)appearanceForTraitCollection:(nonnull UITraitCollection *)trait whenContainedIn:(Class<UIAppearanceContainer>)ContainerClass, ... {
     return [self sharedAlertViewForAppearance];
 }
 
-+ (instancetype)sharedAlertViewForAppearance {
++ (nonnull instancetype)appearanceForTraitCollection:(nonnull UITraitCollection *)trait whenContainedInInstancesOfClasses:(nonnull NSArray<Class<UIAppearanceContainer>> *)containerTypes {
+    return [self sharedAlertViewForAppearance];
+}
+
++ (nonnull instancetype)appearanceWhenContainedInInstancesOfClasses:(nonnull NSArray<Class<UIAppearanceContainer>> *)containerTypes { 
+    return [self sharedAlertViewForAppearance];
+}
+
++ (nonnull instancetype)sharedAlertViewForAppearance {
     static LGAlertView *alertView;
     static dispatch_once_t onceToken;
 
@@ -2929,6 +2937,7 @@ _Pragma("clang diagnostic pop")
                 self.tableView.delegate = self;
                 self.tableView.scrollEnabled = NO;
                 [self.tableView registerClass:[LGAlertViewCell class] forCellReuseIdentifier:@"cell"];
+                self.tableView.estimatedRowHeight = self.buttonsHeight;
                 self.tableView.frame = CGRectMake(0.0, 0.0, width, CGFLOAT_MAX);
                 [self.tableView reloadData];
                 [self.tableView layoutIfNeeded];

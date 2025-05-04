@@ -55,11 +55,22 @@
 _Pragma("clang diagnostic push") _Pragma("clang diagnostic ignored \"-Wpartial-availability\"")
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 _Pragma("clang diagnostic pop")
-    NSTimeInterval duration = coordinator.transitionDuration;
+    __weak typeof(self) weakSelf = self;
+    __weak typeof(coordinator) weakCoordinator = coordinator;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:duration animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
-            [self.alertView layoutValidateWithSize:size];
+        if (!weakSelf) {
+            return;
+        }
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        float transitionDuration = ^{
+            if (weakCoordinator) {
+                return weakCoordinator.transitionDuration;
+            }
+            return [[LGAlertView appearance] animationDuration];
+        }();
+        [UIView animateWithDuration:transitionDuration animations:^{
+            [strongSelf setNeedsStatusBarAppearanceUpdate];
+            [strongSelf.alertView layoutValidateWithSize:size];
         }];
     });
 }
