@@ -3012,7 +3012,10 @@ _Pragma("clang diagnostic pop")
         heightMax -= self.buttonsHeight + self.cancelButtonOffsetY;
     }
     else if (self.cancelOnTouch && !self.cancelButtonTitle && size.width < width + (self.buttonsHeight * 2.0)) {
-        heightMax -= self.buttonsHeight * 2.0;
+        heightMax -= self.buttonsHeight * 2.0 + self.cancelButtonOffsetY;
+    }
+    else {
+        heightMax -= self.cancelButtonOffsetY;
     }
 
     if (self.scrollView.contentSize.height < heightMax) {
@@ -3043,7 +3046,9 @@ _Pragma("clang diagnostic pop")
         CGFloat bottomShift = self.offsetVertical;
 
         if ([LGAlertViewHelper isCancelButtonSeparate:self] && self.cancelButton) {
-            bottomShift += self.buttonsHeight+self.cancelButtonOffsetY;
+            bottomShift += self.buttonsHeight + self.cancelButtonOffsetY;
+        } else {
+            bottomShift += self.cancelButtonOffsetY;
         }
 
         scrollViewFrame = CGRectMake((size.width - width) / 2.0, size.height - bottomShift - heightMax, width, heightMax);
@@ -3070,6 +3075,8 @@ _Pragma("clang diagnostic pop")
 
         if ([LGAlertViewHelper isCancelButtonSeparate:self] && self.cancelButton) {
             commonHeight += self.buttonsHeight + self.cancelButtonOffsetY;
+        } else {
+            commonHeight += self.cancelButtonOffsetY;
         }
 
         self.scrollViewCenterHidden = CGPointMake(CGRectGetMinX(scrollViewFrame) + (CGRectGetWidth(scrollViewFrame) / 2.0),
